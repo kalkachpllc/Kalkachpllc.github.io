@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkach PLLC — New York Attorney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #1a2e1a;
+      --green-mid: #2d4f2d;
+      --green-accent: #4a7c4a;
+      --green-light: #d4e8d4;
+      --green-pale: #f0f7f0;
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --text-dark: #1a1a1a;
+      --text-mid: #4a4a4a;
+      --text-muted: #888;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--off-white); color: var(--text-dark); line-height: 1.6; }
+
+    /* LANGUAGE TOGGLE */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 3px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--green-light);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--white); color: var(--green-dark); opacity: 1; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--green-dark);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 1rem;
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.25rem; color: var(--white); letter-spacing: 0.02em; text-decoration: none; flex-shrink: 0; }
+    .nav-logo span { color: var(--green-light); font-style: italic; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--green-light); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+
+    /* HERO */
+    .hero { background: var(--green-dark); color: var(--white); padding: 6rem 2rem 5rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; border-radius: 50%; border: 60px solid var(--green-mid); opacity: 0.4; }
+    .hero::after { content: ''; position: absolute; bottom: -80px; left: 30%; width: 200px; height: 200px; border-radius: 50%; border: 40px solid var(--green-accent); opacity: 0.2; }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-tag { display: inline-block; background: var(--green-accent); color: var(--green-light); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; font-weight: 400; }
+    .hero h1 em { font-style: italic; color: var(--green-light); }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 560px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--green-dark); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 12px 24px; border-radius: 4px; transition: background 0.2s, transform 0.15s; }
+    .hero-cta:hover { background: var(--green-light); transform: translateY(-1px); }
+
+    /* SECTIONS */
+    .section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-accent); margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.15; color: var(--green-dark); margin-bottom: 1rem; font-weight: 400; }
+    .section-subtitle { font-size: 1rem; color: var(--text-mid); max-width: 520px; margin-bottom: 3rem; line-height: 1.7; }
+
+    /* PRACTICE CARDS */
+    .practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .practice-card { background: var(--white); border: 1px solid #e5ede5; border-radius: 12px; padding: 2rem 1.75rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .practice-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,46,26,0.08); }
+    .practice-icon { width: 44px; height: 44px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.3rem; }
+    .practice-card h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--green-dark); margin-bottom: 0.6rem; font-weight: 400; }
+    .practice-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    .usmca-tag { display: inline-block; margin-top: 0.75rem; background: var(--green-pale); color: var(--green-accent); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; }
+
+    /* ABOUT */
+    .about-section { background: var(--green-dark); color: var(--white); padding: 5rem 2rem; }
+    .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-avatar { aspect-ratio: 4/5; background: var(--green-mid); border-radius: 12px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; position: relative; }
+    .about-initials { font-family: var(--serif); font-size: 6rem; color: var(--green-light); opacity: 0.3; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); line-height: 1; }
+    .about-badge { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: var(--green-dark); color: var(--green-light); font-size: 0.75rem; font-weight: 500; padding: 6px 16px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.05em; }
+    .about-content .section-label { color: var(--green-light); opacity: 0.7; }
+    .about-content h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.15; margin-bottom: 1.25rem; font-weight: 400; }
+    .about-content h2 em { font-style: italic; color: var(--green-light); }
+    .about-content p { font-size: 0.95rem; color: rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 1rem; }
+    .about-highlights { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .highlight-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--green-light); }
+    .highlight-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-accent); flex-shrink: 0; }
+
+    /* BLOG */
+    .blog-section { background: var(--white); padding: 5rem 2rem; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .blog-card { border-bottom: 2px solid var(--green-light); padding-bottom: 1.5rem; }
+    .blog-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-accent); margin-bottom: 0.5rem; }
+    .blog-card h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--green-dark); line-height: 1.3; margin-bottom: 0.6rem; font-weight: 400; }
+    .blog-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+    .blog-date { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; }
+
+    /* CONTACT */
+    .contact-section { padding: 5rem 2rem; background: var(--green-pale); }
+    .contact-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .contact-inner .section-title { margin-bottom: 0.75rem; }
+    .contact-inner > p { color: var(--text-mid); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+    .contact-cards { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-card { background: var(--white); border: 1px solid #e5ede5; border-radius: 10px; padding: 1.5rem 2rem; flex: 1; min-width: 160px; max-width: 220px; }
+    .contact-card-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .contact-card-value { font-family: var(--serif); font-size: 1rem; color: var(--green-dark); }
+
+    /* FOOTER */
+    footer { background: var(--green-dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.8rem; line-height: 1.7; }
+    footer a { color: var(--green-light); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+
+    /* Language switching — JS controls display, these are defaults */
+    .t { display: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Kalkach <span>PLLC</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#practice"><span class="t en">Practice</span><span class="t es">Práctica</span></a></li>
+        <li><a href="#about"><span class="t en">About</span><span class="t es">Nosotros</span></a></li>
+        <li><a href="#insights"><span class="t en">Insights</span><span class="t es">Blog</span></a></li>
+        <li><a href="#contact"><span class="t en">Contact</span><span class="t es">Contacto</span></a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-tag"><span class="t en">New York &amp; Mexico Attorney</span><span class="t es">Abogada en Nueva York &amp; México</span></span>
+      <h1><span class="t en">Law that works<br><em>for real people.</em></span><span class="t es">Derecho que trabaja<br><em>para la gente real.</em></span></h1>
+      <p><span class="t en">Kalkach PLLC is a New York-based law firm focused on Labor &amp; Employment, Personal Injury, and International Trade. Straightforward counsel. No jargon.</span><span class="t es">Kalkach PLLC es un despacho jurídico con sede en Nueva York especializado en Derecho Laboral, Lesiones Personales y Comercio Internacional. Asesoría clara. Sin tecnicismos.</span></p>
+      <a href="#practice" class="hero-cta"><span class="t en">See practice areas →</span><span class="t es">Ver áreas de práctica →</span></a>
+    </div>
+  </section>
+
+  <section class="section" id="practice">
+    <div class="section-inner">
+      <p class="section-label"><span class="t en">What we do</span><span class="t es">Lo que hacemos</span></p>
+      <h2 class="section-title"><span class="t en">Practice Areas</span><span class="t es">Áreas de Práctica</span></h2>
+      <p class="section-subtitle"><span class="t en">We take on cases that matter — and we see them through.</span><span class="t es">Tomamos los casos que importan — y los llevamos hasta el final.</span></p>
+      <div class="practice-grid">
+
+        <div class="practice-card">
+          <div class="practice-icon">⚖️</div>
+          <h3><span class="t en">Labor &amp; Employment</span><span class="t es">Derecho Laboral</span></h3>
+          <p><span class="t en">Workplace discrimination, wrongful termination, wage disputes, harassment claims, and employee rights. We stand up for workers.</span><span class="t es">Discriminación laboral, despido injustificado, disputas salariales, acoso y derechos de los trabajadores. Defendemos a quienes trabajan.</span></p>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">🩺</div>
+          <h3><span class="t en">Personal Injury</span><span class="t es">Lesiones Personales</span></h3>
+          <p><span class="t en">If you've been hurt in New York — whether in a construction accident, a workplace injury, a slip and fall on someone else's property, or a car, truck, or vehicle accident — you may be entitled to compensation. We fight for the full recovery you deserve.</span><span class="t es">Si resultaste lesionado en Nueva York — ya sea en un accidente de construcción, una lesión laboral, una caída en propiedad ajena, o un accidente de auto, camión u otro vehículo — puede que tengas derecho a compensación. Luchamos por la recuperación que mereces.</span></p>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">🌎</div>
+          <h3><span class="t en">International Trade</span><span class="t es">Comercio Internacional</span></h3>
+          <p><span class="t en">Cross-border trade disputes, compliance, and regulatory matters between the U.S. and Mexico. We assist with the USMCA Rapid Response Mechanism — a tool designed to protect workers' rights to free association and collective bargaining at covered facilities.</span><span class="t es">Disputas de comercio transfronterizo, cumplimiento normativo y asuntos regulatorios entre EE.UU. y México. Asistimos con el Mecanismo de Respuesta Rápida del T-MEC — una herramienta para proteger los derechos de libre asociación y negociación colectiva de los trabajadores.</span></p>
+          <span class="usmca-tag">USMCA / T-MEC</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-avatar">
+        <img src="photo.jpeg" alt="Yamile Kalkach, Esq." style="width:100%; height:100%; object-fit:cover; object-position: center top; display:block;" />
+        <div class="about-badge">Yamile Kalkach, Esq.</div>
+      </div>
+      <div class="about-content">
+        <p class="section-label"><span class="t en">About</span><span class="t es">Sobre mí</span></p>
+        <h2><span class="t en">Counsel to whom you can<br><em>actually talk.</em></span><span class="t es">Una abogada con quien<br><em>puedes hablar de verdad.</em></span></h2>
+        <p><span class="t en">Yamile Kalkach founded Kalkach PLLC with one goal: to make quality legal representation accessible, approachable, and effective.</span><span class="t es">Yamile Kalkach fundó Kalkach PLLC con un objetivo: hacer que la representación legal de calidad sea accesible, cercana y efectiva.</span></p>
+        <p><span class="t en">Licensed in both New York and Mexico, Yamile brings an international perspective and genuine care to every client she represents — whether navigating U.S. labor law or cross-border trade matters under the USMCA.</span><span class="t es">Licenciada tanto en Nueva York como en México, Yamile aporta una perspectiva internacional y un cuidado genuino a cada cliente que representa — ya sea en derecho laboral estadounidense o en asuntos de comercio transfronterizo bajo el T-MEC.</span></p>
+        <div class="about-highlights">
+          <div class="highlight-item"><div class="highlight-dot"></div><span class="t en">Licensed in New York &amp; Mexico</span><span class="t es">Licenciada en Nueva York y México</span></div>
+          <div class="highlight-item"><div class="highlight-dot"></div><span class="t en">Labor &amp; Employment Law</span><span class="t es">Derecho Laboral</span></div>
+          <div class="highlight-item"><div class="highlight-dot"></div><span class="t en">Personal Injury — New York</span><span class="t es">Lesiones Personales — Nueva York</span></div>
+          <div class="highlight-item"><div class="highlight-dot"></div><span class="t en">International Trade &amp; USMCA</span><span class="t es">Comercio Internacional y T-MEC</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-section" id="insights">
+    <div class="section-inner">
+      <p class="section-label"><span class="t en">Insights</span><span class="t es">Blog</span></p>
+      <h2 class="section-title"><span class="t en">From the desk of Kalkach PLLC</span><span class="t es">Desde el escritorio de Kalkach PLLC</span></h2>
+      <p class="section-subtitle"><span class="t en">Plain-English takes on employment law, your rights at work, and navigating the legal system.</span><span class="t es">Perspectivas claras sobre derecho laboral, tus derechos en el trabajo y cómo navegar el sistema legal.</span></p>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <p class="blog-tag"><span class="t en">Employment</span><span class="t es">Laboral</span></p>
+          <h3><span class="t en">What to do if you've been wrongfully terminated</span><span class="t es">Qué hacer si te despidieron injustificadamente</span></h3>
+          <p><span class="t en">Losing your job unexpectedly is stressful. Here's what your first 30 days should look like, legally speaking.</span><span class="t es">Perder tu trabajo inesperadamente es estresante. Esto es lo que deberían ser tus primeros 30 días, desde el punto de vista legal.</span></p>
+          <p class="blog-date"><span class="t en">Coming soon</span><span class="t es">Próximamente</span></p>
+        </div>
+        <div class="blog-card">
+          <p class="blog-tag"><span class="t en">Personal Injury</span><span class="t es">Lesiones Personales</span></p>
+          <h3><span class="t en">Construction accidents in New York — know your rights</span><span class="t es">Accidentes de construcción en Nueva York — conoce tus derechos</span></h3>
+          <p><span class="t en">New York has some of the strongest protections for construction workers in the country. Here's what Labor Law §240 means for you.</span><span class="t es">Nueva York tiene algunas de las protecciones más sólidas para trabajadores de construcción del país. Esto es lo que la Ley Laboral §240 significa para ti.</span></p>
+          <p class="blog-date"><span class="t en">Coming soon</span><span class="t es">Próximamente</span></p>
+        </div>
+        <div class="blog-card">
+          <p class="blog-tag"><span class="t en">International Trade</span><span class="t es">Comercio Internacional</span></p>
+          <h3><span class="t en">The USMCA Rapid Response Mechanism explained</span><span class="t es">El Mecanismo de Respuesta Rápida del T-MEC explicado</span></h3>
+          <p><span class="t en">What it is, who it protects, and how workers and companies can use it to resolve labor rights disputes across borders.</span><span class="t es">Qué es, a quién protege y cómo los trabajadores y empresas pueden usarlo para resolver disputas de derechos laborales a nivel transfronterizo.</span></p>
+          <p class="blog-date"><span class="t en">Coming soon</span><span class="t es">Próximamente</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <p class="section-label"><span class="t en">Get in touch</span><span class="t es">Contáctanos</span></p>
+      <h2 class="section-title"><span class="t en">Ready to talk?</span><span class="t es">¿List@ para hablar?</span></h2>
+      <p><span class="t en">Whether you have a pressing legal question or just want to understand your options — reach out. Initial consultations are straightforward and judgment-free.</span><span class="t es">Ya sea que tengas una pregunta legal urgente o simplemente quieras entender tus opciones — comunícate. Las consultas iniciales son directas y sin juicios.</span></p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <p class="contact-card-label"><span class="t en">Firm</span><span class="t es">Firma</span></p>
+          <p class="contact-card-value">Kalkach PLLC</p>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label"><span class="t en">Location</span><span class="t es">Ubicación</span></p>
+          <p class="contact-card-value">New York, NY</p>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label"><span class="t en">Phone</span><span class="t es">Teléfono</span></p>
+          <p class="contact-card-value" style="font-size:0.85rem;"><a href="tel:+16464703151" style="color: var(--green-dark); text-decoration: none;">(646) 470-3151</a></p>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label">Email</p>
+          <p class="contact-card-value" style="font-size:0.85rem;">kalkach@kalkach.com</p>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label">Instagram</p>
+          <p class="contact-card-value"><a href="https://instagram.com/ykalkach" target="_blank" style="color: var(--green-accent); text-decoration: none;">@ykalkach</a></p>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label">LinkedIn</p>
+          <p class="contact-card-value"><a href="https://www.linkedin.com/in/yamile-kalkach/" target="_blank" style="color: var(--green-accent); text-decoration: none;">Yamile Kalkach</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Kalkach PLLC · New York · <a href="mailto:kalkach@kalkach.com">kalkach@kalkach.com</a></p>
+    <p style="margin-top: 6px;">
+      <span class="t en">Attorney advertising. Prior results do not guarantee a similar outcome.</span>
+      <span class="t es">Publicidad de abogados. Los resultados anteriores no garantizan un resultado similar.</span>
+    </p>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.t').forEach(el => {
+        el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
+      });
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.documentElement.lang = lang;
+    }
+    setLang('en');
+  </script>
+
+</body>
+</html>
